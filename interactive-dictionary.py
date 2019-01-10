@@ -32,19 +32,45 @@ def retrive_definition(word):
             return data[get_close_matches(word, data.keys())[0]]
         elif (action == "n"):
             return ("The word doesn't exist, yet.")
+            action_2 = raw_input("Do you want to update the existing dictionary? [y or n]:")
+            
+
+            if(action_2 == 'y'):
+
+                key = raw_input("Enter the word:")
+
+                value = raw_input("Enter the meaning :")
+
+                data.update({key : value})
+
+                return ("updated!")
+
+            elif (action_2 == 'n'):
+                        
+                return ("Okay!")
+            else:
+                return ("Please enter a valid response!")    
+            
         else:
             return ("We don't understand your entry. Apologies.")
+toexit = 0 
 
-#Input from user
-word_user = input("Enter a word: ")
+while(toexit != 1):
+    #Input from user
+    word_user = input("Enter a word: ")
 
-#Retrive the definition using function and print the result
-output = retrive_definition(word_user)
+    #Retrive the definition using function and print the result
+    output = retrive_definition(word_user)
 
-#If a word has more than one definition, print them recursively
-if type(output) == list:
-    for item in output:
-        print("-",item)
-#For words having single definition
-else:
-    print("-",output)
+    #If a word has more than one definition, print them recursively
+    if type(output) == list:
+        for item in output:
+            print("-",item)
+    #For words having single definition
+    else:
+        print("-",output)
+        toexit = input("Do you want to exit? [1 or 0]")
+
+
+print ("Thanks for using this dictionary!")    
+
